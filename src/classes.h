@@ -4,6 +4,7 @@ class WaveBuilder
 		float f;
 };
 
+//Class for sine waves with overloaded constructors
 class SineBuilder:public WaveBuilder
 {
     public:
@@ -23,12 +24,13 @@ class SineBuilder:public WaveBuilder
         }
 };
 
+//Class for square waves with overloaded constructors
 class SquareBuilder:public WaveBuilder
 {
     public:
         float d_ratio = 0.5;
-        float high_state = 5;
-        float low_state = -2;
+        float high_state = 1;
+        float low_state = -1;
         float phi = 0;
         float time_period;
         float duty_cycle = d_ratio;
@@ -59,6 +61,7 @@ class SquareBuilder:public WaveBuilder
         }
 };
 
+//Class for triangle waves with overloaded constructors
 class TriangleBuilder:public WaveBuilder
 {
     public:

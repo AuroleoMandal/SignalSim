@@ -2,12 +2,14 @@
 #include<math.h>
 #include"classes.h"
 
+//returns amplitude of sin wave at a particular time
 float SineBuilder::result(float t)
 {
 	float a = sin((t * frequency + phi )* pi);
 	return a;
 }
 
+//returns amplitude of square wave at a particular time
 float SquareBuilder::result(float t)
 {
     float high_period = time_period*duty_cycle;
@@ -19,6 +21,8 @@ float SquareBuilder::result(float t)
     return low_state;
 }
 
+//returns amplitude of triangle wave at a particular time
+//NOT WORKING to be fixed
 float TriangleBuilder::result(float t)
 {
     float a;
