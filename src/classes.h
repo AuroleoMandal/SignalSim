@@ -1,55 +1,53 @@
+struct WaveVariables
+{
+    float frequency = 1.0f, amplitude = 1.0f, bias = 0.0f, phi = 0.0f;
+    float high_state = 1.0f, low_state = -1.0f, duty_cycle = 0.5f, peak = 2*1.0f;
+
+    float time_period = 1/frequency;
+};
+
 class WaveBuilder
 {
-	public:
+public:
+    WaveVariables var;
 
-        struct WaveVariables
-        {
-//{frequency, amplitude, bias, phi, high_state, low_state, duty cycle, peak}
-        float frequency = 1.0f, amplitude = 1.0f, bias = 0.0f, phi = 0.0f;
-        float high_state = 1.0f, low_state = -1.0f, duty_cycle = 0.5f, peak = 2*1.0f;
+    WaveBuilder(){};
 
+    WaveBuilder(WaveVariables var)
+    {
+        this->var = var;
+    }
 
-        float f = 1/frequency;
-        float time_period = f;
-        }var;
-        
+    float result(float);
 
 };
 
 //Class for sine waves with overloaded constructors
 class SineBuilder:public WaveBuilder
 {
-    public:
-        float result(float, struct WaveVariables);
+public:
+    SineBuilder(WaveVariables var): WaveBuilder(var){};
+    SineBuilder(): WaveBuilder(){};
 
-        SineBuilder(struct WaveVariables)
-        {
-        }
-
-
+    float result(float);
 };
 
 //Class for square waves with overloaded constructors
 class SquareBuilder:public WaveBuilder
 {
-    public:
+public:
+    SquareBuilder(WaveVariables var): WaveBuilder(var){};
+    SquareBuilder(): WaveBuilder(){};
 
-        float result(float, struct WaveVariables);
-
-        SquareBuilder(struct WaveVariables)
-        {
-        }
+    float result(float);
 };
 
 //Class for triangle waves with overloaded constructors
 class TriangleBuilder:public WaveBuilder
 {
-    public:
-
-        float result(float, struct WaveVariables);
-
-        TriangleBuilder(struct WaveVariables)
-        {
-        }
-
+public:
+    TriangleBuilder(WaveVariables var): WaveBuilder(var){};
+    TriangleBuilder(): WaveBuilder(){};
+    
+    float result(float);
 };
