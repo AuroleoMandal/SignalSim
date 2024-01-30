@@ -1,63 +1,43 @@
 class WaveBuilder
 {
 	public:
-		float f;
+
+        struct WaveVariables
+        {
+//{frequency, amplitude, bias, phi, high_state, low_state, duty cycle, peak}
+        float frequency = 1.0f, amplitude = 1.0f, bias = 0.0f, phi = 0.0f;
+        float high_state = 1.0f, low_state = -1.0f, duty_cycle = 0.5f, peak = 2*1.0f;
+
+
+        float f = 1/frequency;
+        float time_period = f;
+        }var;
+        
+
 };
 
 //Class for sine waves with overloaded constructors
 class SineBuilder:public WaveBuilder
 {
     public:
-        float frequency;
-        float phi = 0.0f;
-        float result(float t);
+        float result(float, struct WaveVariables);
 
-        SineBuilder(float f, float p)
+        SineBuilder(struct WaveVariables)
         {
-            frequency = f;
-            phi = p;
         }
 
-        SineBuilder(float f)
-        {
-            frequency = f;
-        }
+
 };
 
 //Class for square waves with overloaded constructors
 class SquareBuilder:public WaveBuilder
 {
     public:
-        float d_ratio = 0.5;
-        float high_state = 1;
-        float low_state = -1;
-        float phi = 0;
-        float time_period;
-        float duty_cycle = d_ratio;
 
-        float result(float t);
+        float result(float, struct WaveVariables);
 
-        SquareBuilder(float f)
+        SquareBuilder(struct WaveVariables)
         {
-            float t = 1/f;
-            time_period = t;
-        } 
-
-        SquareBuilder(float f, float d)
-        {
-            float t = 1/f;
-            time_period = t;
-            duty_cycle = d;
-        } 
-
-        SquareBuilder(float f, float d, float h, float l)
-        {
-            float t = 1/f;
-            time_period = t;
-            high_state = h;
-            low_state = l;
-            time_period = t;
-            duty_cycle = d;
         }
 };
 
@@ -65,19 +45,11 @@ class SquareBuilder:public WaveBuilder
 class TriangleBuilder:public WaveBuilder
 {
     public:
-        float time_period;
-        float d_ratio = 0.5;
-        float high_state = -3;
-        float low_state = -5;
-        float phi = 0;
-        float duty_cycle = d_ratio;
 
-        float result(float t);
+        float result(float, struct WaveVariables);
 
-        TriangleBuilder(float f)
+        TriangleBuilder(struct WaveVariables)
         {
-            float t = 1/f;
-            time_period = t;
         }
 
 };

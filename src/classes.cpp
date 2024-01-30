@@ -3,40 +3,39 @@
 #include"classes.h"
 
 //returns amplitude of sin wave at a particular time
-float SineBuilder::result(float t)
+float SineBuilder::result(float t, struct WaveVariables var)
 {
-	float a = sin((t * frequency + phi )* pi);
-	return a;
+	float a = sin(((2 * t * var.frequency) + var.phi )* pi);
+	return a*var.amplitude + var.bias;
 }
 
 //returns amplitude of square wave at a particular time
-float SquareBuilder::result(float t)
+float SquareBuilder::result(float t, struct WaveVariables var)
 {
-    float high_period = time_period*duty_cycle;
-    if((fmodf(t, time_period)<high_period))
-    {
-        return high_state;
-    }
+    float high_period = var.time_period*var.duty_cycle;
+
+    if(fmodf(t, var.time_period)<high_period)
+        return var.high_state;
+
 	else
-    return low_state;
+        return var.low_state;
 }
 
-//returns amplitude of triangle wave at a particular time
-//NOT WORKING to be fixed
-float TriangleBuilder::result(float t)
+
+float TriangleBuilder::result(float t, struct WaveVariables var)
 {
     float a;
-    float high_period = time_period*duty_cycle;
+    float high_period = var.time_period * var.duty_cycle;
 
-    if((fmodf(t, time_period)<high_period))
+    if((fmodf(t, var.duty_cycle)<high_period))
     {
-        a = (fmodf(t, time_period)*abs(((high_state-low_state)/high_period)))+low_state;
-        return a;
+        a =fmodf(t, var.time_period)*(var.peak/high_period)-(var.peak/2);
+        return a*var.amplitude + var.bias;
     }
 	else
     {
-        a = (fmodf(t, time_period)*((high_state-low_state)/(time_period-high_period)));
-        return a;
+        a = fmodf(t, var.time_period)*(-var.peak)/(var.time_period-high_period)+2*var.peak-(var.peak/2);
+        return a*var.amplitude + var.bias;
     }
 }
 
