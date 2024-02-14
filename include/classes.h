@@ -18,36 +18,35 @@ public:
         this->var = var;
     }
 
-    float result(float);
-
+    virtual float result(float) const;
 };
 
 //Class for sine waves with overloaded constructors
-class SineBuilder:public WaveBuilder
+class SineBuilder : public WaveBuilder
 {
 public:
     SineBuilder(WaveVariables var): WaveBuilder(var){};
     SineBuilder(): WaveBuilder(){};
 
-    float result(float);
+    float result(float) const override;
 };
 
 //Class for square waves with overloaded constructors
-class SquareBuilder:public WaveBuilder
+class SquareBuilder : public WaveBuilder
 {
 public:
     SquareBuilder(WaveVariables var): WaveBuilder(var){};
     SquareBuilder(): WaveBuilder(){};
 
-    float result(float);
+    float result(float) const override;
 };
 
 //Class for triangle waves with overloaded constructors
-class TriangleBuilder:public WaveBuilder
+class TriangleBuilder : public WaveBuilder
 {
 public:
     TriangleBuilder(WaveVariables var): WaveBuilder(var){};
     TriangleBuilder(): WaveBuilder(){};
     
-    float result(float);
+    float result(float) const override;
 };
