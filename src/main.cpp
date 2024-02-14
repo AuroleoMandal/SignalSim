@@ -21,6 +21,7 @@ void simulate(const WaveBuilder& wave)
     printf("\n\n\n");
 }
 
+//returns summation of amplitudes of all waves in an array
 void simulate_add(std::vector<WaveBuilder*>& waveArray)
 {
     float time = 0.0f;
@@ -40,27 +41,10 @@ void simulate_add(std::vector<WaveBuilder*>& waveArray)
     printf("\n\n\n");
 }
 
-
-
 void run()
 {
-    //{frequency, amplitude, bias, phi, high_state, low_state, duty_cycle, peak}
-
-    // SineBuilder sine1 = SineBuilder({frequency: 0.59});
-    // SineBuilder sine2 = SineBuilder({frequency: 1.37});
-    // SineBuilder sine3 = SineBuilder({frequency: 2, phi: 0.5});
-    // SineBuilder sine4 = SineBuilder({frequency: 3.2});
-
-    // SquareBuilder square2 = SquareBuilder({high_state: 3, low_state: 1});
-
-	// TriangleBuilder triangle3 = TriangleBuilder({amplitude: 1.0f});
-
-	// simulate(sine1);
-	// simulate(square2);
-	// simulate(triangle3);
-
-    // WaveBuilder waves[5] = {sine1, sine2, sine3, sine4, square2};
     std::vector<WaveBuilder*> waves;
+
     waves.push_back(new SineBuilder({frequency: 0.59}));
     waves.push_back(new SineBuilder({frequency: 1.37}));
     waves.push_back(new SineBuilder({frequency: 2, phi: 0.5}));

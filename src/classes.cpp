@@ -8,7 +8,7 @@ float WaveBuilder::result(float t) const
     return 0.0f;
 }
 
-//returns amplitude of sin wave at a particular time
+//returns amplitude of sine wave at a particular time
 float SineBuilder::result(float t) const
 {
 	float a = sin(((2 * t * var.frequency) + var.phi )* pi);
@@ -27,6 +27,7 @@ float SquareBuilder::result(float t) const
         return var.low_state;
 }
 
+//returns amplitude of triangle wave at a particular time
 float TriangleBuilder::result(float t) const
 {
     float a;
