@@ -1,4 +1,4 @@
 # -*- MakeFile -*-
 
 all:
-	g++ -g -Wall src/*.cpp -I include/*.h -o build/app
+	g++ -g -Wall src/*.cpp -I include -o build/app
